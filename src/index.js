@@ -1,13 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {HashRouter, Routes, Route, BrowserRouter} from "react-router-dom"
 import './index.css';
 import App from './App';
+import Home from './pages/home';
+import Teams from './pages/Teams';
+import Pdf from './pages/pdf';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route index element={<Home />} />
+          <Route path="pdf" element={<Pdf />} />
+          <Route path="pdf/:url/:page" element={<Pdf />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

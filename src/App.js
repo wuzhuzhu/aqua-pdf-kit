@@ -1,15 +1,9 @@
-import PdfViewerComponent from './components/PdfViewerComponent';
+import {Link, Outlet} from "react-router-dom"
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <div className="PDF-viewer">
-        <PdfViewerComponent
-          document={"Document.pdf"}
-        />
-      </div>
+    <div>
+      <Outlet />
     </div>
   );
 }
-
-export default App;

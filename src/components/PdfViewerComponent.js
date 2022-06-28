@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
+import {useParams} from "react-router-dom"
 
 export default function PdfViewerComponent(props) {
+  const { url, page = 1 } = useParams();
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -13,7 +15,7 @@ export default function PdfViewerComponent(props) {
         container,
         // https://aqua-expo-static.s3.ap-southeast-1.amazonaws.com/airbnb.pdf
         // The document to open.
-        document: 'https://aqua-expo-static.s3.ap-southeast-1.amazonaws.com/airbnb.pdf',
+        document: url,
         // Use the public directory URL as a base URL. PSPDFKit will download its library assets from here.
         baseUrl: `${window.location.protocol}//${window.location.host}/${process.env.PUBLIC_URL}`,
         initialViewState: new PSPDFKit.ViewState({
@@ -23,7 +25,7 @@ export default function PdfViewerComponent(props) {
       });
 
       const state = instance.viewState;
-      const newState = state.set("currentPageIndex", 3);
+      const newState = state.set("currentPageIndex", Number(page) - 1);
       instance.setViewState(newState)
 
       const p = PSPDFKit
