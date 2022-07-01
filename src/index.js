@@ -6,6 +6,7 @@ import App from './App';
 import Home from './pages/home';
 import Teams from './pages/Teams';
 import Pdf from './pages/pdf';
+import Privacy from './pages/privacy';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -15,6 +16,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
+          <Route path="privacy" element={<Privacy />} />
           <Route path="pdf" element={<Pdf />} />
           <Route path="pdf/:url/:page" element={<Pdf />} />
         </Route>
